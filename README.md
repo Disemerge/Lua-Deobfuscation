@@ -13,15 +13,15 @@ Lua VM obfuscation is a technique used to protect Lua code from reverse engineer
 
 Some common techniques used for Lua VM obfuscation include:
 
-1.  Bytecode scrambling: This technique involves rearranging the bytecode instructions in a random order, making it harder to understand the flow of the code.
+1.  **Bytecode scrambling:** This technique involves rearranging the bytecode instructions in a random order, making it harder to understand the flow of the code.
     
-2.  Opcode substitution: In this technique, the original opcodes are replaced with different ones that perform the same function, but are harder to recognize.
+2.  **Opcode substitution:** In this technique, the original opcodes are replaced with different ones that perform the same function, but are harder to recognize.
     
-3.  Constant encryption: This involves encrypting the string and number constants used in the code, making it difficult to extract sensitive information.
+3.  C**onstant encryption:** This involves encrypting the string and number constants used in the code, making it difficult to extract sensitive information.
     
-4.  Control flow obfuscation: This technique involves altering the control flow of the code by inserting dummy code or jump instructions, making it harder to follow the actual logic of the code.
+4.  **Control flow obfuscation:** This technique involves altering the control flow of the code by inserting dummy code or jump instructions, making it harder to follow the actual logic of the code.
     
-5.  Dynamic code generation: This involves generating code at runtime, making it harder to analyze the code statically.
+5.  **Dynamic code generation:** This involves generating code at runtime, making it harder to analyze the code statically.
     
 
 These techniques can be applied individually or in combination to make it harder to reverse engineer or modify the Lua code. However, it's important to note that obfuscation is not foolproof and can be circumvented by determined attackers with sufficient time and resources.
