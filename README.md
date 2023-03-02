@@ -23,16 +23,19 @@ Some common techniques used for Lua VM obfuscation include:
 These techniques can be applied individually or in combination to make it harder to reverse engineer or modify the Lua code. However, it's important to note that obfuscation is not foolproof and can be circumvented by determined attackers with sufficient time and resources.
 
 ### Loadstring
-Loadstring obfuscation is a common technique to hide code within a loadstring. using loadstring is a security risk because it can be easily dumped by skids.
+In Lua, the `loadstring` function can be used to load a string containing Lua code and execute it as a function. This function can be obfuscated, or obscured, by manipulating the string containing the Lua code in such a way that it is difficult for a human to read and understand, but still executable by the `loadstring` function.
+
+The script below can defeat any loadstring obfuscation, Yes its really that simple I know.
 ```lua
 loadstring = print
 ```
 
-Some obfuscators like PSU use this to their advantage for example
+Some obfuscators like PSU use this to their advantage. (Script below taken from PSU obfuscated code)
+The `decompressedbyte` is the second layer of obfuscation which ran by the ``Loadstring`` function which passes the `Table` object.
 ```lua
 loadstring(string.sub(decompressedbytecode, LuaHeaders))(Table, ...)
 ```
-The `decompressedbyte` is the second layer of obfuscation which ran by the ``Loadstring`` function which passes the `Table` object into it so if you just print and run the generated code it simply will not work.
+
 
 ## Defeat obfuscation
 
@@ -83,7 +86,9 @@ end;
 local ByteString=decompress(_StringExpr_);
 ```
 
-Constants are `constant values `defined in the stack which allows the intepreter to 
+In a Lua virtual machine (VM), constants are represented as values that are stored in the VM's constant table. When a Lua script is executed, the VM loads all of the constants defined in the script into the constant table.
+
+The `constant` table is a separate data structure from the VM's stack, which is used to store `temporary values `during script execution. Constants are loaded into the `constant table `at the beginning of script execution and are then accessed from the constant table as needed.
 ```lua
 -- Constants (The most skiddy way to deobfuscate)
 for Idx=1, ConstCount do
@@ -97,10 +102,8 @@ for Idx=1, ConstCount do
 	elseif(Type == _NumberExpr_) then
 
 	end;
-	Consts[Idx] = Cons;
+	Consts[Idx] = Cons; -- Consts = constant table
 end;
-
--- print(table.unpack(Consts)) DEOBFUSCATED AAKAKKAKAKAKk
 ```
 
 To defeat Ironbrew we need to leak the instructions like every other obfuscator.
