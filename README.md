@@ -19,10 +19,7 @@ Some common techniques used for Lua VM obfuscation include:
     
 3.  C**onstant encryption:** This involves encrypting the string and number constants used in the code, making it difficult to extract sensitive information.
     
-4.  **Control flow obfuscation:** This technique involves altering the control flow of the code by inserting dummy code or jump instructions, making it harder to follow the actual logic of the code.
-    
-5.  **Dynamic code generation:** This involves generating code at runtime, making it harder to analyze the code statically.
-    
+4.  **Control flow obfuscation:** This technique involves altering the control flow of the code by inserting dummy code or jump instructions, making it harder to follow the actual logic of the code.    
 
 These techniques can be applied individually or in combination to make it harder to reverse engineer or modify the Lua code. However, it's important to note that obfuscation is not foolproof and can be circumvented by determined attackers with sufficient time and resources.
 
